@@ -1,9 +1,9 @@
-
 function publishPost() {
     let titleField = document.getElementById('title-field')
     let postField = document.getElementById('post-field')
-    axios.post('http://localhost:3000/blogposts', {"title": `${titleField.value}`, "content": `${postField.value}`})
+    axios.post('https://intense-chamber-47166.herokuapp.com/blogposts', {"title": `${titleField.value}`, "content": `${postField.value}`})
         .then(response => {
+            console.log(response.data)
             let alertSection = document.getElementById('alert-section')    
             if (response.data.error) {
                 alertSection.innerHTML = ` 
@@ -24,7 +24,7 @@ function publishPost() {
 }
 
 function renderSideBar() {
-    axios.get('http://localhost:3000/blogposts')
+    axios.get('https://intense-chamber-47166.herokuapp.com/blogposts')
         .then(response => {
             let sideBar = document.getElementById('post-list')
             sideBar.innerHTML = ''
@@ -42,7 +42,7 @@ function renderSideBar() {
 }
 
 function showPost(id) {
-    axios.get(`http://localhost:3000/blogposts/${id}`)
+    axios.get(`https://intense-chamber-47166.herokuapp.com/blogposts/${id}`)
     .then(response => {
         let displayContainer = document.getElementById('display-container')
         displayContainer.innerHTML = `
@@ -58,7 +58,7 @@ function showPost(id) {
 }
 
 function deletePost(id) {
-  axios.delete(`http://localhost:3000/blogposts/${id}`)
+  axios.delete(`https://intense-chamber-47166.herokuapp.com/blogposts/${id}`)
   .then(() => {
         renderSideBar()
         let displayContainer = document.getElementById('display-container')
@@ -71,7 +71,7 @@ function deletePost(id) {
 
 //populates fields for edit
 function getForEdit(id) {
-    axios.get(`http://localhost:3000/blogposts/${id}`)
+    axios.get(`https://intense-chamber-47166.herokuapp.com/blogposts/${id}`)
      .then(response => {
         let displayContainer = document.getElementById('display-container')
         displayContainer.innerHTML = `
@@ -91,12 +91,11 @@ function getForEdit(id) {
      })
 }
 
-
 //Completing the edit
 function editPost(id) {
    let titleField = document.getElementById('title-field')
    let postField = document.getElementById('post-field')
-   axios.put(`http://localhost:3000/blogposts/${id}`, {"title": `${titleField.value}`, "content": `${postField.value}`})
+   axios.put(`https://intense-chamber-47166.herokuapp.com/blogposts/${id}`, {"title": `${titleField.value}`, "content": `${postField.value}`})
     .then(response => {
         if (response.data.error) {
             let alertSection = document.getElementById('alert-section')  

@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => { 
     let curPostId = 0
-    let sideBar = document.getElementById('post-list')
-    let displayContainer = document.getElementById('display-container')
-    let titleField = document.getElementById('title-field')
-    let postField = document.getElementById('post-field')
+ 
     renderSideBar()
 
     document.addEventListener('click', (e) => {
